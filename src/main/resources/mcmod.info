@@ -1,0 +1,16 @@
+[
+  {
+    "modid": "globalcapes",
+    "name": "Globalcapes",
+    "description": "",
+    "version": "${version}",
+    "mcversion": "${mcversion}",
+    "url": "",
+    "updateUrl": "",
+    "authorList": [],
+    "credits": "",
+    "logoFile": "",
+    "screenshots": [],
+    "dependencies": []
+  }
+]
