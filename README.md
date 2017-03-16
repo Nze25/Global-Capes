@@ -6,7 +6,7 @@ Global Capes is a forge mod for having global capes from [Cape API](http://capes
 
 ---
 
-##Instalstion
+##Installation
 
 1. Download and install [Forge](http://files.minecraftforge.net/)
 2. Download the latest version of Global Capes.
