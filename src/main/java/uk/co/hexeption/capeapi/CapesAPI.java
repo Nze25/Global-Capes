@@ -44,21 +44,17 @@ public class CapesAPI {
 
         CapesAPI.setCape(uuid, null);
         String url = String.format(CapesAPI.BASE_URL, uuid);
-        ResourceLocation resourceLocation = new ResourceLocation(
-                String.format("capesapi/capes/%s.png", new Date().getTime())
-        );
+        ResourceLocation resourceLocation = new ResourceLocation(String.format("capesapi/capes/%s.png", new Date().getTime()));
         TextureManager textureManager = Minecraft.getMinecraft().getTextureManager();
         ThreadDownloadImageData threadDownloadImageData = new ThreadDownloadImageData(null, url, null, new IImageBuffer() {
 
             @Override
             public BufferedImage parseUserSkin(BufferedImage image) {
-
                 return image;
             }
 
             @Override
             public void skinAvailable() {
-
                 CapesAPI.setCape(uuid, resourceLocation);
                 CapesAPI.pendingRequests.remove(uuid);
             }
@@ -66,7 +62,6 @@ public class CapesAPI {
         textureManager.loadTexture(resourceLocation, threadDownloadImageData);
         CapesAPI.pendingRequests.add(uuid);
     }
-
     /**
      * Set the cape of a player
      *
@@ -74,15 +69,12 @@ public class CapesAPI {
      * @param resourceLocation ResourceLocation of the cape
      */
     public static void setCape(UUID uuid, ResourceLocation resourceLocation) {
-
         CapesAPI.capes.put(uuid, resourceLocation);
     }
-
     /**
      * Remove the cape of the user from the cape hashmap
      */
     public static void deleteCape(UUID uuid) {
-
         CapesAPI.capes.remove(uuid);
     }
 
@@ -92,7 +84,6 @@ public class CapesAPI {
      * @return ResourceLocation of the cape or null if none was found
      */
     public static ResourceLocation getCape(UUID uuid) {
-
         return capes.getOrDefault(uuid, null);
     }
 
@@ -105,29 +96,23 @@ public class CapesAPI {
      * @return true if the player has a cape, otherwise false
      */
     public static boolean hasCape(UUID uuid) {
-
         boolean hasCape = CapesAPI.capes.containsKey(uuid);
         ResourceLocation resourceLocation = CapesAPI.capes.get(uuid);
-
         if (hasCape && resourceLocation == null && !CapesAPI.hasPendingRequests(uuid)) {
             CapesAPI.loadCape(uuid);
             return false;
         }
-
         return hasCape;
     }
-
     /**
      * Resets the capes map and downloads capes of players previously seen
      * once you they are in range
      */
     public static void resetCapes() {
-
         for (UUID userId : CapesAPI.capes.keySet()) {
             CapesAPI.capes.put(userId, null);
         }
     }
-
     /**
      * Determines wether a player's cape is currently being fetched
      *
@@ -135,7 +120,6 @@ public class CapesAPI {
      * @return true if the player's cape is currently being fetched, false otherwise
      */
     private static boolean hasPendingRequests(UUID uuid) {
-
         return CapesAPI.pendingRequests.contains(uuid);
     }
 

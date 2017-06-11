@@ -23,14 +23,11 @@ import javax.annotation.Nullable;
 @SideOnly(Side.CLIENT)
 @Mixin(AbstractClientPlayer.class)
 public abstract class MixinAbstractClientPlayer extends MixinEntityPlayer {
-
     @Shadow
     @Nullable
     protected abstract NetworkPlayerInfo getPlayerInfo();
-
     @Inject(method = "<init>", at = @At(value = "RETURN"))
     public void AbstractClientPlayer(World worldIn, GameProfile playerProfile, CallbackInfo callbackInfo) {
-
         CapesAPI.loadCape(getGameProfile().getId());
     }
 
@@ -40,7 +37,6 @@ public abstract class MixinAbstractClientPlayer extends MixinEntityPlayer {
     @Overwrite
     @Nullable
     public ResourceLocation getLocationCape() {
-
         if (CapesAPI.hasCape(getGameProfile().getId())) {
             return CapesAPI.getCape(getGameProfile().getId());
         } else {

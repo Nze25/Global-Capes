@@ -10,7 +10,6 @@ import org.spongepowered.asm.mixin.Shadow;
  */
 @Mixin(EntityPlayer.class)
 public abstract class MixinEntityPlayer {
-
     @Shadow
     public abstract GameProfile getGameProfile();
 }
